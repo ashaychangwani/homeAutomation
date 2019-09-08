@@ -2,6 +2,9 @@
 #include "Adafruit_MQTT.h"
 #include "Adafruit_MQTT_Client.h"
 #define Relay1            D1
+#define Relay2            D2
+#define Relay3            D3
+#define Relay4            D4
 
 #define WLAN_SSID "kukuluc102"
 #define WLAN_PASS "wifiplease"
@@ -17,7 +20,10 @@ WiFiClient client;
 
 Adafruit_MQTT_Client mqtt(&client, AIO_SERVER, AIO_SERVERPORT, AIO_USERNAME, AIO_KEY);
 
-Adafruit_MQTT_Subscribe Fan1 = Adafruit_MQTT_Subscribe(&mqtt, AIO_USERNAME"/feeds/Fan");
+Adafruit_MQTT_Subscribe Fan = Adafruit_MQTT_Subscribe(&mqtt, AIO_USERNAME"/feeds/Fan");
+Adafruit_MQTT_Subscribe Light = Adafruit_MQTT_Subscribe(&mqtt, AIO_USERNAME"/feeds/Light");
+Adafruit_MQTT_Subscribe YellowLight = Adafruit_MQTT_Subscribe(&mqtt, AIO_USERNAME"/feeds/YellowLight");
+Adafruit_MQTT_Subscribe BlueLight = Adafruit_MQTT_Subscribe(&mqtt, AIO_USERNAME"/feeds/BlueLight");
 
 void MQTT_connect();
 
@@ -25,6 +31,9 @@ void setup() {
   // put your setup code here, to run once:
   Serial.begin(115200);
   pinMode(Relay1,OUTPUT);
+  pinMode(Relay2,OUTPUT);
+  pinMode(Relay3,OUTPUT);
+  pinMode(Relay4,OUTPUT);
   pinMode(LED_BUILTIN, OUTPUT);  
 
   Serial.println();
@@ -41,8 +50,11 @@ void setup() {
   Serial.print("WiFi Connected");
   Serial.print("IP Address");
   Serial.print(WiFi.localIP());
-  mqtt.subscribe(&Fan1);
-  
+  mqtt.subscribe(&Fan);
+  mqtt.subscribe(&Light);
+  mqtt.subscribe(&YellowLight);
+  mqtt.subscribe(&BlueLight);
+
 }
 
 void loop() {
@@ -59,12 +71,30 @@ void loop() {
   
   Adafruit_MQTT_Subscribe *subscription;
   while ((subscription = mqtt.readSubscription(5000))) {
-    if (subscription == &Fan1) {
-      Serial.print(F("Got: "));
-      Serial.println((char *)Fan1.lastread);
-      int Light1_State = atoi((char *)Fan1.lastread);
-      digitalWrite(Relay1, !(Light1_State));
+    if (subscription == &Fan) {
+      Serial.print(F("Fan: "));
+      Serial.println((char *)Fan.lastread);
+      int Fan_State = atoi((char *)Fan.lastread);
+      digitalWrite(Relay1, !(Fan_State));
       
+    }
+    if (subscription == &Light){
+      Serial.print(F("Light: "));
+      Serial.println((char *)Light.lastread);
+      int Light_State = atoi((char *)Light.lastread);
+      digitalWrite(Relay2, !(Light_State));
+    }
+    if (subscription == &YellowLight){
+      Serial.print(F("Yellow Light: "));
+      Serial.println((char *)YellowLight.lastread);
+      int YellowLight_State = atoi((char *)YellowLight.lastread);
+      digitalWrite(Relay3, !(YellowLight_State));
+    }
+    if (subscription == &BlueLight){
+      Serial.print(F("Blue Light: "));
+      Serial.println((char *)BlueLight.lastread);
+      int BlueLight_State = atoi((char *)BlueLight.lastread);
+      digitalWrite(Relay4, !(BlueLight_State));
     }
   }
 }
