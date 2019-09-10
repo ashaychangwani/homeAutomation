@@ -54,6 +54,9 @@ void setup() {
   Serial.print("IP Address");
   Serial.print(WiFi.localIP());
 
+  
+  ArduinoOTA.setHostname("primaryESP8266");
+
   ArduinoOTA.onStart([](){
     Serial.println("Start");
   });

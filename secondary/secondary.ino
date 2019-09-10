@@ -55,7 +55,6 @@ void setup() {
   Serial.print("WiFi Connected");
   Serial.print("IP Address");
   Serial.print(WiFi.localIP());
-  
   ArduinoOTA.onStart([](){
     Serial.println("Start");
   });
