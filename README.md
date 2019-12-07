@@ -4,10 +4,10 @@ This is an Arduino based project- my first foray into IOT. The aim is to create 
 
 **Hardware**
 
-NodeMCU v3 CH340S (https://www.aliexpress.com/item/Wireless-module-NodeMcu-v3-v2-ESP32-D1MINI-Lua-WIFI-development-board-ESP8266-with-pcb-Antenna-and/32656775273.html?spm=a2g0s.9042311.0.0.96e74c4dsPFrtl)
-4 Channel Relay Octocoupler (https://www.aliexpress.com/item/32905958885.html?spm=a2g0s.9042311.0.0.2eca4c4dfOnvs3)
-AC-DC 5V 700mA 3.5W Precision Buck Converter Transformer module (https://www.aliexpress.com/item/32677330307.html?spm=a2g0s.9042311.0.0.96e74c4dsPFrtl)
-5V-3.3V Voltage Regulator (https://www.aliexpress.com/snapshot/0.html?spm=a2g0s.9042311.0.0.96e74c4dsPFrtl&orderId=101806902870217&productId=1996291344)
+* NodeMCU v3 CH340S (https://www.aliexpress.com/item/Wireless-module-NodeMcu-v3-v2-ESP32-D1MINI-Lua-WIFI-development-board-ESP8266-with-pcb-Antenna-and/32656775273.html?spm=a2g0s.9042311.0.0.96e74c4dsPFrtl)
+* 4 Channel Relay Octocoupler (https://www.aliexpress.com/item/32905958885.html?spm=a2g0s.9042311.0.0.2eca4c4dfOnvs3)
+* AC-DC 5V 700mA 3.5W Precision Buck Converter Transformer module (https://www.aliexpress.com/item/32677330307.html?spm=a2g0s.9042311.0.0.96e74c4dsPFrtl)
+* 5V-3.3V Voltage Regulator (https://www.aliexpress.com/snapshot/0.html?spm=a2g0s.9042311.0.0.96e74c4dsPFrtl&orderId=101806902870217&productId=1996291344)
 
 **Software Implementation**
 The project uses IFTTT and AdaFruit in order to interface between the Arduino and the Google Assistant. The WiFi Details and the AdaFruit Keys are redacted for obvious purposes.
